@@ -27,7 +27,11 @@ public class DemoApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         //
         String key = "";
-        String url = String.format("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=%s&input=burger king&location=39.674768,-75.6592079&radius=20", key);
+        String location = "Popeyes";
+        String lat = "39.674768";
+        String lon = "-75.6592079";
+        String radius = "50";
+        String url = String.format("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=%s&input=%s&location=%s,%s&radius=%s", key, location, lat, lon, radius);
         ResponseEntity<PredictionsResponse> response = restTemplate.getForEntity(url,PredictionsResponse.class);
         Prediction[] data = response.getBody().getPredictions();
         for(Prediction prediction :data)
